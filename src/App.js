@@ -22,24 +22,46 @@ function App() {
     }
   }, []);
 
+  function handleOnSelect(memo) {
+    setTarget(memo);
+    setIsOpen(!isOpen);
+  }
+
+  function handleOnAdd() {
+    const newMemo = { id: nextId++, content: "新規メモ" };
+    setMemos([...memos, newMemo]);
+    setTarget(newMemo);
+    setIsOpen(true);
+  }
+
+  function handleOnEdit(target) {
+    setMemos(
+      memos.map((memo) => {
+        return target.id === memo.id ? target : memo;
+      })
+    );
+    setIsOpen(false);
+  }
+
+  function handleOnDelete(target) {
+    setMemos(
+      memos.filter((memo) => {
+        return target.id !== memo.id;
+      })
+    );
+    setIsOpen(false);
+  }
+
   return (
     <div className="content">
       <div>
         <MemoList
           memos={memos}
           onSelect={(memo) => {
-            setTarget(memo);
-            setIsOpen(!isOpen);
+            handleOnSelect(memo);
           }}
         />
-        <NewMemoButton
-          onAdd={() => {
-            const newMemo = { id: nextId++, content: "新規メモ" };
-            setMemos([...memos, newMemo]);
-            setTarget(newMemo);
-            setIsOpen(true);
-          }}
-        />
+        <NewMemoButton onAdd={handleOnAdd} />
       </div>
       <div>
         <Form
@@ -47,20 +69,10 @@ function App() {
           memo={target}
           isOpen={isOpen}
           onEdit={(target) => {
-            setMemos(
-              memos.map((memo) => {
-                return target.id === memo.id ? target : memo;
-              }),
-            );
-            setIsOpen(false);
+            handleOnEdit(target);
           }}
           onDelete={(target) => {
-            setMemos(
-              memos.filter((memo) => {
-                return target.id !== memo.id;
-              }),
-            );
-            setIsOpen(false);
+            handleOnDelete(target);
           }}
         />
       </div>
