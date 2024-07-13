@@ -9,7 +9,7 @@ git clone https://github.com/thmz337/memo-app-react.git
 2. ブランチの切り替え
 
 ```
-git checkout my-memo-app
+git switch my-memo-app
 ```
 
 3. アプリの起動
