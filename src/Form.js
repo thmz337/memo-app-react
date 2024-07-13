@@ -6,10 +6,8 @@ export default function Form({ memo, onEdit, onDelete, isOpen }) {
   return (
     <section className="memo-form">
       {isOpen && (
-        <div>
-          <div>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} />
-          </div>
+        <>
+          <textarea value={text} onChange={(e) => setText(e.target.value)} />
           <div>
             <button
               className="edit-button"
@@ -21,7 +19,7 @@ export default function Form({ memo, onEdit, onDelete, isOpen }) {
               削除
             </button>
           </div>
-        </div>
+        </>
       )}
     </section>
   );
