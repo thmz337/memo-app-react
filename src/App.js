@@ -6,21 +6,25 @@ import NewMemoButton from "./NewMemoButton.js";
 
 let nextId = 0;
 
+const useLocalStorage = (key, initValue) => {
+  const getItem = () => {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : initValue;
+  };
+
+  const setItem = (item) => {
+    setSavedItems(item);
+    localStorage.setItem(key, JSON.stringify(item));
+  };
+
+  const [savedValues, setSavedItems] = useState(getItem);
+  return [savedValues, setItem];
+};
+
 function App() {
-  const [memos, setMemos] = useState([]);
+  const [memos, setMemos] = useLocalStorage("memos", []);
   const [target, setTarget] = useState({});
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("memos", JSON.stringify(memos));
-  }, [memos]);
-
-  useEffect(() => {
-    const memos = JSON.parse(localStorage.getItem("memos"));
-    if (memos) {
-      setMemos(memos);
-    }
-  }, []);
 
   function handleOnSelect(memo) {
     setTarget(memo);
