@@ -45,3 +45,13 @@ li {
 .memo-form .delete-button {
   width: 50px;
 }
+
+.loginSection {
+  width: 500px;
+}
+
+.loginButton {
+  display: block;
+  margin-left: 280px;
+  margin-top: 20px;
+}
