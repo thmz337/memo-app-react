@@ -27,7 +27,7 @@ function App() {
     setMemos(
       memos.map((memo) => {
         return target.id === memo.id ? target : memo;
-      })
+      }),
     );
     setIsOpen(false);
   }
@@ -36,7 +36,7 @@ function App() {
     setMemos(
       memos.filter((memo) => {
         return target.id !== memo.id;
-      })
+      }),
     );
     setIsOpen(false);
   }
