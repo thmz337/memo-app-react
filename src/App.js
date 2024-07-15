@@ -3,6 +3,7 @@ import "./App.css";
 import MemoList from "./MemoList.js";
 import Form from "./Form.js";
 import NewMemoButton from "./NewMemoButton.js";
+import LoginSection from "./LoginSection.js";
 import useLocalStorage from "./hooks/useLocalStorage.js";
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
   }
 
   return (
-    <div className="content">
+    <LoginSection>
       <div>
         <MemoList
           memos={memos}
@@ -64,7 +65,7 @@ function App() {
           }}
         />
       </div>
-    </div>
+    </LoginSection>
   );
 }
 
