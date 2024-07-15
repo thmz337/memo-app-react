@@ -3,21 +3,7 @@ import "./App.css";
 import MemoList from "./MemoList.js";
 import Form from "./Form.js";
 import NewMemoButton from "./NewMemoButton.js";
-
-const useLocalStorage = (key, initValue) => {
-  const getItem = () => {
-    const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : initValue;
-  };
-
-  const setItem = (item) => {
-    setSavedItems(item);
-    localStorage.setItem(key, JSON.stringify(item));
-  };
-
-  const [savedValues, setSavedItems] = useState(getItem);
-  return [savedValues, setItem];
-};
+import useLocalStorage from "./hooks/useLocalStorage.js";
 
 function App() {
   const [memos, setMemos] = useLocalStorage("memos", []);
