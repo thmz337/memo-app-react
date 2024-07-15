@@ -4,8 +4,6 @@ import MemoList from "./MemoList.js";
 import Form from "./Form.js";
 import NewMemoButton from "./NewMemoButton.js";
 
-let nextId = 0;
-
 const useLocalStorage = (key, initValue) => {
   const getItem = () => {
     const item = localStorage.getItem(key);
@@ -32,7 +30,7 @@ function App() {
   }
 
   function handleOnAdd() {
-    const newMemo = { id: nextId++, content: "新規メモ" };
+    const newMemo = { id: crypto.randomUUID(), content: "新規メモ" };
     setMemos([...memos, newMemo]);
     setTarget(newMemo);
     setIsOpen(true);
